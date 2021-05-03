@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Users With Templates</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+    </head>
+    <body>
+        <div class = "container">
+            <div class = "all_users">
+                <h1> All the Users </h1>
+                <ul>
+                {% for user in all_the_users %}
+                    <li>{{user.id}} {{user.first_name}} {{user.last_name}} {{user.email_address}} {{user.age}}</li>
+                {% endfor %}
+                </ul>
+            </div>
+            <div class = "add_user">
+                <form action = "/process" method = "POST">
+                    {% csrf_token %}
+                    <h1>Add a User</h1>
+                    <p>
+                    <label for = "first_name">First Name</label>
+                    <input type = "text" id = "first_name" name = "first_name">
+                    
+                    <label for = "last_name">Last Name</label>
+                    <input type = "text" id = "last_name" name = "last_name">
+                    </p>
+                
+                    <p>
+                    <label for = "email_address">Email</label>
+                    <input type = "text" id = "email_address" name = "email_address">
+
+                    <label for = "age">Age</label>
+                    <input type = "text" id = "age" name = "age">
+                    </p>
+
+                    <input type = "submit" value = "Add">
+                </form>
+            </div>
+        </div>
+
+    </body>
+</html>
